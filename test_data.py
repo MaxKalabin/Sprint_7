@@ -23,3 +23,13 @@ ORDER_DEFAULT_BODY = {
     "comment": "Saske, come back to Konoha",
     "color": []
 }
+
+#Ключи данных для Assert
+TEXT_ID = "id"
+TRACK = "track"
+ORDERS = "orders"
+OK_TRUE_ANSWER = '{"ok":true}'
+INSUFFICIENT_DATA_FOR_LOGIN_ERROR = "Недостаточно данных для входа"
+ACCOUNT_NOT_FOUND_ERROR = "Учетная запись не найдена"
+LOGIN_EXIST_ERROR = "Этот логин уже используется"
+INSUFFICIENT_DATA_FOR_REGISTRATION_ERROR = "Недостаточно данных для создания учетной записи"

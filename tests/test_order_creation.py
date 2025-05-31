@@ -1,7 +1,8 @@
 import allure
 import pytest
 from helpers import create_order, get_order_payload
-from test_data import ORDER_COLORS
+from test_data import ORDER_COLORS, TRACK
+
 
 @allure.feature("Создание заказа")
 class TestOrderCreation:
@@ -17,4 +18,4 @@ class TestOrderCreation:
     def test_order_response_contains_track(self, color):
         payload = get_order_payload(color)
         response = create_order(payload)
-        assert "track" in response.json(), "Ответ должен содержать номер трека заказа"
+        assert TRACK in response.json(), "Ответ должен содержать номер трека заказа"

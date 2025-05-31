@@ -1,5 +1,4 @@
 import allure
-import json
 import requests
 import random
 import string
@@ -10,14 +9,6 @@ def generate_random_string(length = 10):
     letters = string.ascii_lowercase
     random_string = ''.join(random.choice(letters) for i in range(length))
     return random_string
-
-@allure.step('Генерация данных для создания курьера')
-def generate_courier_data():
-    return {
-        "login": generate_random_string(),
-        "password": generate_random_string(),
-        "firstName": generate_random_string()
-    }
 
 @allure.step('Отправка запроса на ручку POST: /api/v1/courier с данными: {courier_data}')
 def register_courier(courier_data):
@@ -31,12 +22,6 @@ def login_courier(courier_data):
 
 @allure.step('Отправка запроса на ручку DELETE: /api/v1/courier/{courier_id} для удаления курьера после тестов')
 def delete_courier(courier_id):
-    delete_response = requests.delete(f"{BASE_URL}{COURIER_ENDPOINT}/{courier_id}")
-    assert delete_response.status_code == 200, f"Курьер {courier_id} должен быть удален"
-
-@allure.step('Очистка созданного курьера после теста')
-def clear_courier(response):
-    courier_id = response.json()["id"]
     delete_response = requests.delete(f"{BASE_URL}{COURIER_ENDPOINT}/{courier_id}")
     assert delete_response.status_code == 200, f"Курьер {courier_id} должен быть удален"
 

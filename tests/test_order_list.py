@@ -1,5 +1,7 @@
 import allure
 from helpers import get_orders_list
+from test_data import ORDERS
+
 
 @allure.feature("Список заказов")
 class TestOrderList:
@@ -10,8 +12,8 @@ class TestOrderList:
         assert response.status_code == 200, "Ожидается статус-код 200 при успешном получении списка заказов"
 
         data = response.json()
-        assert "orders" in data, "Ответ должен содержать ключ 'orders'"
-        assert isinstance(data["orders"], list), "Поле 'orders' должно быть списком"
+        assert ORDERS in data, "Ответ должен содержать ключ 'orders'"
+        assert isinstance(data[ORDERS], list), "Поле 'orders' должно быть списком"
 
-        for order in data["orders"]:
+        for order in data[ORDERS]:
             assert isinstance(order, dict), "Каждый заказ должен быть объектом (dict)"
